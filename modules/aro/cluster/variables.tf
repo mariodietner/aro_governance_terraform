@@ -23,7 +23,7 @@ variable "cluster_domain" {
 variable "cluster_version" {
   description = "The OpenShift version to deploy."
   type        = string
-  default     = "4.19"
+  default     = "4.14.23"
 }
 
 variable "pod_cidr" {
