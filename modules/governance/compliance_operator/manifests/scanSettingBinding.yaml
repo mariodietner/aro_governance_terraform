@@ -1,0 +1,17 @@
+apiVersion: compliance.openshift.io/v1alpha1
+kind: ScanSettingBinding
+metadata:
+  name: cis-compliance
+  namespace: openshift-compliance
+profiles:
+# CIS Red Hat OpenShift Container Platform Benchmark v1.7.0
+# https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/security_and_compliance/compliance-operator#cis-profiles_compliance-operator-supported-profiles
+  - name: ocp4-cis
+    kind: Profile
+    apiGroup: compliance.openshift.io/v1alpha1
+settingsRef:
+  name: default
+  kind: ScanSetting
+  apiGroup: compliance.openshift.io/v1alpha1
+  # following the compliance scan with oc get compliancescan -w -n openshift-compliance
+  # get some status scans commands: https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/security_and_compliance/compliance-operator#compliance-operator-remediation
