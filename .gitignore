@@ -37,3 +37,6 @@ override.tf.json
 terraform.rc
 
 .idea/
+
+# at the moment i dont want to lock to specidifc providers
+*.hcl

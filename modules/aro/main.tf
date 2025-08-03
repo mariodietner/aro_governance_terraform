@@ -15,7 +15,7 @@ module "roles" {
   source="./roles"
 
   vnet_id = module.network.vnet_id
-  service_principal_object_id_sp_aro_app = module.principals.application_object_id
+  service_principal_object_id_sp_aro_app = module.principals.application_service_principal_object_id
   service_principal_object_id_redhatopenshift = module.principals.redhatopenshift_object_id
   subscription_id = var.subscription_id
   resource_group = var.resource_group

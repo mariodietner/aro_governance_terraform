@@ -1,7 +1,7 @@
 data "azurerm_policy_definition_built_in" "tag_resoruces_policy" {
-  display_name = "Add a tag to resources"
+  display_name = "Require a tag on resources"
 }
 
 data "azurerm_policy_definition_built_in" "tag_resourcegroup_policy" {
-  display_name = "Add a tag to resource groups"
+  display_name = "Require a tag on resource groups"
 }

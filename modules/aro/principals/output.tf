@@ -6,6 +6,10 @@ output "application_object_id" {
   value = azuread_application.my_aro_app.object_id
 }
 
+output "application_service_principal_object_id" {
+  value = azuread_service_principal.sp_aro_app.object_id
+}
+
 output "service_principal_password" {
   #for safekeeping, store the password in a key vault
   value     = azuread_service_principal_password.sp_aro_app_pwd.value

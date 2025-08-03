@@ -1,6 +1,10 @@
 resource "azurerm_resource_group" "aro_resource_group" {
   name     = var.resource_group
   location = var.location
+  tags = {
+    environment = "production"
+    project = "demo"
+  }
 }
 
 module "aro" {
