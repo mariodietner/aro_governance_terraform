@@ -12,7 +12,7 @@ module "aro" {
 
   name = var.name
   location = var.location
-  resource_group = var.resource_group
+  resource_group = azurerm_resource_group.aro_resource_group.name
   subscription_id = var.subscription_id
 }
 
@@ -26,6 +26,8 @@ module "compliance_operator" {
   source = "./modules/governance/compliance_operator"
 
   cluster_api_url = module.aro.apiserver_url
-  resource_group = var.resource_group
+  resource_group = azurerm_resource_group.aro_resource_group.name
   cluster_name = var.name
+
+  depends_on = [module.aro]
 }

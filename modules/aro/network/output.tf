@@ -1,4 +1,4 @@
-output "control_plane_subnet_id" {
+  output "control_plane_subnet_id" {
   description = "The ID of the control plane subnet."
   value       = azurerm_subnet.control_plane_subnet.id
 }
