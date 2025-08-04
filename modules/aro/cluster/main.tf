@@ -1,3 +1,12 @@
+resource "azurerm_resource_group" "vm_resource_group" {
+  name     = "${var.resource_group_name}-vms"
+  location = var.location
+  tags = {
+    environment = "production"
+    project = "demo"
+  }
+}
+
 resource "azurerm_redhat_openshift_cluster" "aro_cluster" {
   name                = var.openshift_cluster_name
   location            = var.location
@@ -6,6 +15,9 @@ resource "azurerm_redhat_openshift_cluster" "aro_cluster" {
   cluster_profile {
     domain  = var.cluster_domain
     version = var.cluster_version
+    #pull_secret
+
+    managed_resource_group_name = azurerm_resource_group.vm_resource_group.name
   }
 
   network_profile {

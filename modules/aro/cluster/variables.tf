@@ -1,7 +1,7 @@
 variable "openshift_cluster_name" {
   description = "The name of the Red Hat OpenShift cluster."
   type        = string
-  default     = "examplearo"
+  default     = "aro"
 }
 
 variable "location" {
@@ -17,13 +17,13 @@ variable "resource_group_name" {
 variable "cluster_domain" {
   description = "The domain for the OpenShift cluster."
   type        = string
-  default     = "aro-example.com"
+  default     = "domain.local"
 }
 
 variable "cluster_version" {
   description = "The OpenShift version to deploy."
   type        = string
-  default     = "4.14.23"
+  default     = "4.17.27"
 }
 
 variable "pod_cidr" {

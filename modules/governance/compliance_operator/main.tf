@@ -10,7 +10,7 @@ resource "terraform_data" "bootstrap" {
     command = <<EOT
       bash bootstrap.sh
     EOT
-
+    working_dir = "${path.module}/scripts"
     environment = {
       RESOURCE_GROUP = self.input.resource_group
       CLUSTER_NAME = self.input.cluster_name
