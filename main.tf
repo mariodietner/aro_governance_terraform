@@ -25,7 +25,7 @@ module "azure_policies" {
 module "compliance_operator" {
   source = "./modules/governance/compliance_operator"
 
-  cluster_api_url = module.aro.apiserver_url
+  cluster_api_url = module.aro.apiserver_ip
   resource_group = azurerm_resource_group.aro_resource_group.name
   cluster_name = var.name
 
