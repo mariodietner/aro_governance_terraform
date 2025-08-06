@@ -4,10 +4,7 @@ resource "azurerm_virtual_network" "aro_vnet" {
   location            = var.location
   resource_group_name = var.resource_group_name
 
-  tags = { 
-    environment = "production"
-    project = "demo"
-   }
+  tags = var.tags
 }
 
 resource "azurerm_subnet" "control_plane_subnet" {
@@ -31,11 +28,7 @@ resource "azurerm_network_security_group" "aronsg" {
   location            = var.location
   resource_group_name = var.resource_group_name
 
-  tags = { 
-    environment = "production"
-    project = "demo"
-    component = "network"
-   }  
+  tags = var.tags
 }
 
 resource "azurerm_network_security_rule" "aro_inbound_api" {

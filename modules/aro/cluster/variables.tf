@@ -94,3 +94,8 @@ variable "sp_client_secret" {
   type        = string
   sensitive   = true
 }
+
+variable "tags" {
+  description = "tags that will be used in all resources created"
+  type = map(string)
+}

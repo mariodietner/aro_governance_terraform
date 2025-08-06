@@ -1,10 +1,7 @@
 resource "azurerm_resource_group" "vm_resource_group" {
   name     = "${var.resource_group_name}-vms"
   location = var.location
-  tags = {
-    environment = "production"
-    project = "demo"
-  }
+  tags = var.tags
 }
 
 resource "azurerm_redhat_openshift_cluster" "aro_cluster" {
@@ -50,9 +47,5 @@ resource "azurerm_redhat_openshift_cluster" "aro_cluster" {
     client_secret = var.sp_client_secret
   }
 
-  tags = { 
-    environment = "production"
-    project = "demo"
-    component = "cluster"
-   }
+  tags = var.tags
 }
