@@ -37,3 +37,8 @@ variable "worker_service_endpoints" {
   type        = list(string)
   default     = ["Microsoft.Storage", "Microsoft.ContainerRegistry"]
 }
+
+variable "tags" {
+  description = "tags that will be used in all resources created"
+  type = map(string)
+}

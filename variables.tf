@@ -22,3 +22,8 @@ variable "tenant_id" {
   description = "The subscription id used for the role scope"
   type        = string
 }
+
+variable "tags" {
+  description = "tags that will be used in all resources created"
+  type = map(string)
+}
