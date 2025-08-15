@@ -17,7 +17,6 @@ variable "resource_group_name" {
 variable "cluster_domain" {
   description = "The domain for the OpenShift cluster."
   type        = string
-  default     = "domain.local"
 }
 
 variable "cluster_version" {
@@ -98,4 +97,9 @@ variable "sp_client_secret" {
 variable "tags" {
   description = "tags that will be used in all resources created"
   type = map(string)
+}
+
+variable "pull_secret" {
+  type = string
+  description = "The pull secret as plain string."
 }

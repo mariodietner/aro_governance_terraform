@@ -1,9 +1,19 @@
+data "external" "readyz" {
+  program = ["bash", "${path.module}/scripts/readyz.sh"]
+
+  query = {
+    URL = "https://api.${var.cluster_domain}:6443/readyz"
+  }
+}
+
 resource "terraform_data" "bootstrap" {
   input = {
     resource_group = var.resource_group
     cluster_name = var.cluster_name
     cluster_api_url = var.cluster_api_url
   }
+
+  triggers_replace = [data.external.readyz]
 
   provisioner "local-exec" {
     on_failure = fail

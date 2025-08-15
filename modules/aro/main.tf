@@ -9,6 +9,7 @@ module "network" {
 
   location = var.location
   resource_group_name = var.resource_group
+  tags = var.tags
 }
 
 module "roles" {
@@ -32,6 +33,20 @@ module "cluster" {
   worker_subnet_id = module.network.worker_subnet_id
   sp_client_id = module.principals.application_client_id
   sp_client_secret = module.principals.service_principal_password
+  cluster_domain = var.cluster_domain
+  pull_secret = var.pull_secret
+  tags = var.tags
 
   depends_on = [module.principals, module.network, module.roles]
+}
+
+module "dns" {
+  source = "./dns"
+
+  domain = var.cluster_domain
+  resource_group_name = var.domain_resource_group_name
+  apiserver_ip = module.cluster.apiserver_ip
+  ingress_ip = module.cluster.ingress_ip
+
+  depends_on = [module.cluster]
 }

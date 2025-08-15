@@ -1,9 +1,3 @@
-resource "azurerm_resource_group" "vm_resource_group" {
-  name     = "${var.resource_group_name}-vms"
-  location = var.location
-  tags = var.tags
-}
-
 resource "azurerm_redhat_openshift_cluster" "aro_cluster" {
   name                = var.openshift_cluster_name
   location            = var.location
@@ -12,10 +6,12 @@ resource "azurerm_redhat_openshift_cluster" "aro_cluster" {
   cluster_profile {
     domain  = var.cluster_domain
     version = var.cluster_version
-    #pull_secret
+    pull_secret = var.pull_secret
 
-    managed_resource_group_name = azurerm_resource_group.vm_resource_group.name
+    managed_resource_group_name = "${var.resource_group_name}-vms"
   }
+
+  # todo: apply tags to newly created resource group ${var.resource_group_name}-vms
 
   network_profile {
     pod_cidr     = var.pod_cidr
