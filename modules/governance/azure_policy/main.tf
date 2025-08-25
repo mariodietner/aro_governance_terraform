@@ -1,6 +1,6 @@
 resource "azurerm_subscription_policy_assignment" "assign_environment_tag_resources_policy" {
   name                 = "require-environment-tag-on-resources"
-  policy_definition_id = data.azurerm_policy_definition_built_in.tag_resoruces_policy.id
+  policy_definition_id = data.azurerm_policy_definition_built_in.tag_resources_policy.id
   subscription_id      = var.subscription_id
   parameters = jsonencode({
       "tagName" = {
@@ -11,7 +11,7 @@ resource "azurerm_subscription_policy_assignment" "assign_environment_tag_resour
 
 resource "azurerm_subscription_policy_assignment" "assign_project_tag_resources_policy" {
   name                 = "require-project-tag-on-resources"
-  policy_definition_id = data.azurerm_policy_definition_built_in.tag_resoruces_policy.id
+  policy_definition_id = data.azurerm_policy_definition_built_in.tag_resources_policy.id
   subscription_id      = var.subscription_id
   parameters = jsonencode({
     "tagName" = {
