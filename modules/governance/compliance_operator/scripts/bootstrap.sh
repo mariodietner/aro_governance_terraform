@@ -32,14 +32,17 @@ oc apply -f ../manifests/namespace.yaml --insecure-skip-tls-verify
 oc apply -f ../manifests/operator_group.yaml --insecure-skip-tls-verify
 oc apply -f ../manifests/subscription.yaml --insecure-skip-tls-verify
 
-sleep 5
+# some wait time needs to be introduced until the operator hub is enabled and the compliance operator is installed
 
-INSTALL_PLAN=$(oc get subscription compliance-operator-sub --insecure-skip-tls-verify -n openshift-compliance -o jsonpath='{.status.installplan.name}')
-
-for i in {1..100}; do
+for i in {1..200}; do
   echo "checking compliance-operator operator installation-$i"
 
+  INSTALL_PLAN=$(oc get subscription compliance-operator-sub --insecure-skip-tls-verify -n openshift-compliance -o jsonpath='{.status.installplan.name}')
+  echo $INSTALL_PLAN
+
   OPERATOR_STATUS=$(oc get installplan "$INSTALL_PLAN" -n openshift-compliance -o jsonpath='{.status.phase}' 2>/dev/null)
+  echo $OPERATOR_STATUS
+
   if [ "$OPERATOR_STATUS" = "Complete" ]; then
       echo "compliance-operator installed successfully"
       break

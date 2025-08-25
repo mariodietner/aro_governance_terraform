@@ -7,11 +7,12 @@ do
   readyz=$(curl -ks "$URL");
 
   if [[ $readyz == "ok" ]]; then
-    jq -n '{"readyz":"true"}'
+    jq -n '{"ready":"true"}'
     exit 0;
   fi
 
-  sleep 1;
+  sleep 2;
 done
 
+jq -n '{"ready":"false"}'
 exit 1
